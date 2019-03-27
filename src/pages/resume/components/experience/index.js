@@ -1,35 +1,45 @@
 import React, { Component } from 'react';
-import { Row, Col, Tag , PageHeader, Timeline, Icon, Card   } from 'antd';
+import { Timeline , Card   } from 'antd';
 import { connect } from 'dva';
 import styles from './index.css';
 
 class Experience extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      expirence:[]
-    };
+
+  componentDidMount(){
+      const { dispatch } = this.props;
+      dispatch({
+        type : 'resume/fetch',
+        payload : [],
+      });
   }
 
   render() {
-    const { expirence } = this.props;
+    const { experience } = this.props;
+    if(experience.length === 0){
+      return (<div className={styles.experience}><Card title="教育/工作经历"></Card></div>);
+    }
     return (
-      <Card title="教育/工作经历" hoverable={true} size={'small'}>
-        <Timeline pending={"至今"} pendingDot={<Icon type="loading" />}>
-          <Timeline.Item color={'green'}>2009-09 --> 2013-07  大连理工大学(全日制本科)</Timeline.Item>
-          <Timeline.Item color={'green'}>2013-09 --> 2014-09  中国人民解放军第五三一一工厂 技术员</Timeline.Item>
-          <Timeline.Item color={'green'}>2015-09 --> 2017-07  大连理工大学(全日制研究生)</Timeline.Item>
-          <Timeline.Item color={'green'}>2017-07<br/>东软集团（大连）有限公司 高级JAVA开发工程师</Timeline.Item>
-        </Timeline>
-      </Card>
+      <div className={styles.experience}>
+        <Card title="教育/工作经历">
+          <Timeline>
+            {
+              experience.map((exp , index) => {
+                  return <Timeline.Item key={index} color={'green'}>{exp.from} --
+                    {exp.to} {exp.workspace} {exp.position}</Timeline.Item>;
+                }
+              )
+            }
+          </Timeline>
+        </Card>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { resume : { expirence } } = state;
+  const { resume : { experience } } = state;
   return {
-    expirence
+    experience
   };
 }
 

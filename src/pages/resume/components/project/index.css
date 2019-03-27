@@ -1,4 +1,13 @@
-.responsibility {
-  width: 100px !important;
-  text-align: right;
+
+.item {
+  margin: 10px 10px;
+}
+
+.label {
+  float: right;
+  font-weight:bold;
+}
+
+.project {
+  margin: 10px 0px;
 }

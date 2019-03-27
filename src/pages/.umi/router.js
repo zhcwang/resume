@@ -26,12 +26,7 @@ let routes = [
         "component": require('../resume/page.js').default
       },
       {
-        "path": "/users",
-        "exact": true,
-        "component": require('../users/page.js').default
-      },
-      {
-        "component": () => React.createElement(require('G:/learning-react/dva/examples/user-dashboard/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', routes: '[{"path":"/","component":"./src\\\\layouts\\\\index.js","routes":[{"path":"/","exact":true,"component":"./src/pages/index/index.js"},{"path":"/resume","exact":true,"component":"./src/pages/resume/page.js"},{"path":"/users","exact":true,"component":"./src/pages/users/page.js"}]}]' })
+        "component": () => React.createElement(require('G:/learning-react/dva/examples/user-dashboard/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', routes: '[{"path":"/","component":"./src\\\\layouts\\\\index.js","routes":[{"path":"/","exact":true,"component":"./src/pages/index/index.js"},{"path":"/resume","exact":true,"component":"./src/pages/resume/page.js"}]}]' })
       }
     ]
   }

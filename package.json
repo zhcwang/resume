@@ -9,6 +9,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "bizcharts": "^3.5.1",
     "umi": "^1.0.0-0",
     "umi-plugin-dva": "^0.1.0"
   },

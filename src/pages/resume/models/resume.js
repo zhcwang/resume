@@ -7,13 +7,43 @@ export default {
             name: '',
             phone: null,
             description: '',
-            wanted:'',
+            wanted:[],
             photoPath:'',
           },
+    experience:[],
+    project:[],
+    skill:{ score:[]},
   },
   effects: {
-    *fetch({ payload: { page = 'info' } }, { call, put }) {
+    *experience({ payload } ,  { call, put }){
+      const { data } = yield call(resumeService.experience);
+      yield put({
+        type: 'save',
+        payload: {
+          data,
+        },
+      });
+    },
+    *fetch({ payload }, { call, put }) {
       const { data } = yield call(resumeService.fetch);
+      yield put({
+        type: 'save',
+        payload: {
+          data,
+        },
+      });
+    },
+    *project({ payload }, { call, put }) {
+      const { data } = yield call(resumeService.project);
+      yield put({
+        type: 'save',
+        payload: {
+          data,
+        },
+      });
+    },
+    *skill({ payload }, { call, put }) {
+      const { data } = yield call(resumeService.skill);
       yield put({
         type: 'save',
         payload: {
@@ -26,14 +56,5 @@ export default {
     save(state, { payload: { data } }) {
       return { ...state, ...data};
     },
-  },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname, query }) => {
-        if (pathname === '/resume') {
-          dispatch({ type: 'fetch', payload: query });
-        }
-      });
-    },
-  },
+  }
 };

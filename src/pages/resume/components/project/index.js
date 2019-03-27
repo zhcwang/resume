@@ -1,41 +1,65 @@
 import React, { Component } from 'react';
-import { Row, Col, Tag , Icon, Typography, Divider , Tabs, Card } from 'antd';
+import { Row, Col, Tag , Tabs, Card } from 'antd';
 import { connect } from 'dva';
 import styles from './index.css';
 
 const TabPane = Tabs.TabPane;
 
 class Project extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      project:[]
-    };
+
+  componentDidMount() {
+    let {dispatch} = this.props;
+    dispatch({type: 'resume/project'});
   }
 
   render() {
     const { project } = this.props;
+    if(!project){
+      return  <div className={styles.project}></div>
+    }
     return (
-      <Card title="项目" hoverable={true} size={'small'}>
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="数据比对平台" key="1">
-            <div>
-              <span className={styles["responsibility"]}>职责：</span><span>主力研发</span>
-            </div>
-            <div>
-              <span>工作内容：</span><span>compare工作内容</span>
-            </div>
-          </TabPane>
-          <TabPane tab="应用数据连接平台" key="2">
-            <div>
-              <span className={styles["responsibility"]}>职责：</span><span>产品负责人</span>
-            </div>
-            <div>
-              <span className={styles["responsibility"]}>工作内容：</span><span>adc工作内容</span>
-            </div>
-          </TabPane>
-        </Tabs>
-      </Card>
+      <div className={styles.project}>
+        <Card title="项目">
+          <Tabs defaultActiveKey="1">
+            {
+              project.map((proj , index) => {
+                const {name, description, resbonsiblility, content} = proj;
+                return <TabPane tab={ name } key={index + ''}>
+                  <div className={styles['item']}>
+                    <Row>
+                      <Col span={2}><span className={styles['label']}>产品简介：</span></Col>
+                      <Col span={22}>
+                        { description }
+                      </Col>
+                    </Row>
+                  </div>
+                  <div className={styles['item']}>
+                    <Row>
+                      <Col span={2}><span className={styles['label']}>职责：</span></Col>
+                      <Col span={22}>
+                        {
+                          resbonsiblility.map((resp, index) => {
+                            return <Tag color="darkseagreen" key={index}>{resp}</Tag>
+                          })
+                        }
+
+                      </Col>
+                    </Row>
+                  </div>
+                  <div className={styles['item']}>
+                    <Row>
+                      <Col span={2}><span className={styles['label']}>工作内容：</span></Col>
+                      <Col span={22}>
+                        <div dangerouslySetInnerHTML={{__html: content}}></div>
+                      </Col>
+                    </Row>
+                  </div>
+                </TabPane>
+              })
+            }
+          </Tabs>
+        </Card>
+       </div>
     );
   }
 }
