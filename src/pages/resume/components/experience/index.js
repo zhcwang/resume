@@ -14,13 +14,14 @@ class Experience extends Component {
   }
 
   render() {
-    const { experience } = this.props;
+    const { experience, isLoading } = this.props;
+    console.log('教育工作经历组件loading:' + isLoading);
     if(experience.length === 0){
       return (<div className={styles.experience}><Card title="教育/工作经历"></Card></div>);
     }
     return (
       <div className={styles.experience}>
-        <Card title="教育/工作经历">
+        <Card title="教育/工作经历" loading={isLoading}>
           <Timeline>
             {
               experience.map((exp , index) => {
@@ -37,9 +38,11 @@ class Experience extends Component {
 }
 
 function mapStateToProps(state) {
-  const { resume : { experience } } = state;
+  const { resume : { experience },loading } = state;
+  const isLoading = loading.effects['resume/fetch'];
   return {
-    experience
+    experience,
+    isLoading
   };
 }
 

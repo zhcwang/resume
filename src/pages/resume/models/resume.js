@@ -7,12 +7,12 @@ export default {
             name: '',
             phone: null,
             description: '',
-            wanted:[],
+            wanted:'',
             photoPath:'',
           },
     experience:[],
     project:[],
-    skill:{ score:[]},
+    skill:[],
   },
   effects: {
     *experience({ payload } ,  { call, put }){

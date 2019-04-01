@@ -14,7 +14,7 @@ class Skill extends Component {
 
 
   render() {
-    const { skill : {score} } = this.props;
+    const { skill } = this.props;
 
     // 定义度量
     const cols = {
@@ -40,7 +40,7 @@ class Skill extends Component {
     return (
       <div className={styles["skill-card"]}>
         <Card title="工作技能" hoverable={true}>
-          <Chart height={300} width={window.innerWidth - 200} data={score} scale={cols}>
+          <Chart height={300} width={window.innerWidth - 200} data={skill} scale={cols}>
             <Axis name="name" title={title}/>
             <Axis name="qualification" title={title}/>
             <Legend position="top" dy={-20} />
@@ -54,10 +54,13 @@ class Skill extends Component {
 }
 
 function mapStateToProps(state) {
-  const { resume : { skill } } = state;
+
+  const { resume : { skill }, loading } = state;
   return {
-    skill
+    skill,
+    loading
   };
+
 }
 
 export default connect(mapStateToProps)(Skill);

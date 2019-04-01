@@ -25,6 +25,8 @@ class BaseInfo extends Component {
       return <div></div>
     }
     let { wanted , description }  = info;
+    console.log("xxxxxxxxxxxxxxxxx" + wanted);
+    let wantedArr = wanted.split(',');
     return (
       <div >
         <Row gutter={16}>
@@ -44,7 +46,7 @@ class BaseInfo extends Component {
                     <div className={styles["info-item"]}><label>职场状态：</label><span>{info.state}</span></div>
                     <div className={styles["info-item"]}><label>求职意向：</label><span>
                       {
-                        wanted.map((want, index) => {
+                        wantedArr.map((want, index) => {
                           return <Tag color="blue" key={index}>{want}</Tag>;
                         })
                       }

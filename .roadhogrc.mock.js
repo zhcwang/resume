@@ -4,7 +4,7 @@ export default {
         name: '王政操',
         state: '在职',
         phone: '15842668910',
-        wanted: ['大连','Java全栈'],
+        wanted: '大连,Java全栈',
         education: '研究生',
         birth: '1990-07-21',
         description: '本人性格开朗、稳重、有活力，待人热情、真诚、能维护良好的同事关系；<br/><br/>注重自我修养，关注他人感受，有很强的集体概念和团队协作精神，具有较强的适应能力；<br/><br/>工作认真负责，积极主动，勇于承受压力，勇于创新，有较强的责任感；<br/><br/>自我驱动型人格，注重自我提升、技术栈扩充，以求更好的回馈于工作；<br/><br/>本人热爱计算机技术、能熟练使用相关软件、愿意拥抱变化，增强自我工作能力；<br/><br/>具有两年Java全栈开发、项目管理以及客户支持经验，能较好的完成软件产品开发、部署、实施等工作',
@@ -64,8 +64,7 @@ export default {
     ]
   },
   'GET /api/skill': {
-    skill: {
-      score : [
+      skill : [
         { name: 'Java', qualification: 8},
         { name: 'Spring', qualification: 8},
         { name: 'Spring MVC', qualification: 8},
@@ -89,6 +88,5 @@ export default {
         { name: 'Redis', qualification: 6},
         { name: 'Chrome插件', qualification: 9},
       ]
-    }
   },
 };
