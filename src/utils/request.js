@@ -18,7 +18,8 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 async function request(url, options) {
-  const response = await fetch(url, options);
+  const urlPrefix = 'http://66.98.120.86:8081';
+  const response = await fetch(urlPrefix + url, options);
 
   checkStatus(response);
 
